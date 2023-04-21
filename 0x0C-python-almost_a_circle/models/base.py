@@ -64,6 +64,7 @@ class Base:
         filename = cls.__name__ + ".json"
         with open(filename, 'w') as f:
                 f.write(jstr)
+
     @staticmethod
     def from_json_string(json_string):
         """Returns the list of the JSON string representation json_string.
@@ -77,6 +78,7 @@ class Base:
                 raise TypeError("json_string must be a string")
             l = json.loads(json_string)
         return l
+
     @classmethod
     def create(cls, **dictionary):
         """Returns an instance with all attributes already set.
