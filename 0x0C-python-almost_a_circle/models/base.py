@@ -64,14 +64,14 @@ class Base:
         filename = cls.__name__ + ".json"
         with open(filename, 'w') as f:
                 f.write(jstr)
-
+  
     @staticmethod
     def from_json_string(json_string):
         """Returns the list of the JSON string representation json_string.
         Args:
             - json_string: string to convert to list
         """
-
+   
         l = []
         if json_string is not None and json_string != '':
             if type(json_string) != str:
