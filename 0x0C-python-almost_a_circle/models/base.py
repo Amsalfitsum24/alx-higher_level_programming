@@ -21,7 +21,7 @@ class Base:
             - id: id of the instance
         """
 
-        if type(id) != int and id is not None:
+        if not isinstance(id, int) and id is not None:
             raise TypeError("id must be an integer")
         if id is not None:
             self.id = id
@@ -39,8 +39,8 @@ class Base:
 
         if list_dictionaries is None or list_dictionaries == []:
             return "[]"
-        if (type(list_dictionaries) != list or
-           not all(type(x) == dict for x in list_dictionaries)):
+        if (not isinstance(list_dictionaries, list) or
+           not all(isinstance(x, dict) for x in list_dictionaries)):
             raise TypeError("list_dictionaries must be a list of dictionaries")
         return json.dumps(list_dictionaries)
 
@@ -63,7 +63,7 @@ class Base:
             jstr = cls.to_json_string([o.to_dictionary() for o in list_objs])
         filename = cls.__name__ + ".json"
         with open(filename, 'w') as f:
-                f.write(jstr)
+            f.write(jstr)
 
     @staticmethod
     def from_json_string(json_string):
@@ -74,7 +74,7 @@ class Base:
 
         l = []
         if json_string is not None and json_string != '':
-            if type(json_string) != str:
+            if not isinstance(json_string, str):
                 raise TypeError("json_string must be a string")
             l = json.loads(json_string)
         return l
@@ -116,7 +116,7 @@ class Base:
             - list_objs: list of instances
         """
 
-        if (type(list_objs) != list and
+        if (not isinstance(list_objs, list) and
            list_objs is not None or
            not all(isinstance(x, cls) for x in list_objs)):
             raise TypeError("list_objs must be a list of instances")
